@@ -15,6 +15,12 @@ class AuthController extends Controller
         return $authenticateUser->execute($request->has('code'), $this);
     }
 
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect()->to('\invite');
+    }
+
     public function userHasLoggedIn()
     {
         return redirect('invite/');

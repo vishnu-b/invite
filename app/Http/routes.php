@@ -3,13 +3,14 @@
 Route::group(['prefix' => 'invite'], function () {
     Route::get('/', function () {
         if (Auth::check()) {
-            // return 'Welcome back ' . Auth::user()->name;
-            return view('welcome');
+            return view('home');
         }
-        return 'Hi guest. ' . link_to('invite/login', 'Login with Google');
+        // return 'Hi guest. ' . link_to('invite/login', 'Login with Google');
+        return view('login');
     });
 
     Route::get('login', 'AuthController@login');
+    Route::get('logout', 'AuthController@logout');
 
     Route::get('get_contacts', [
         'as'=>'google.import',
@@ -20,4 +21,6 @@ Route::group(['prefix' => 'invite'], function () {
         'as' => 'contacts',
         'uses' => 'ContactController@viewContacts'
     ]);
+
+    Route::get('invite/{email}', 'ContactController@invite');
 });

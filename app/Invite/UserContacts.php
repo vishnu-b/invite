@@ -44,7 +44,6 @@ class UserContacts
             }
 
             $contacts = $this->categorize($contacts);
-            // return $contacts;
             \Session::set('contacts', $contacts);
             return redirect()->route('contacts');
         } else {
