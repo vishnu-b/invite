@@ -17,6 +17,11 @@ class AuthController extends Controller
 
     public function userHasLoggedIn()
     {
-        return redirect('/');
+        return redirect('invite/');
+    }
+
+    public function contacts(AuthenticateUser $authenticateUser, Request $request)
+    {
+        return $authenticateUser->getContacts($request);
     }
 }

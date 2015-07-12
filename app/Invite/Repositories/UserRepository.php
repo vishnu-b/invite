@@ -6,6 +6,10 @@ use App\User;
 
 class UserRepository
 {
+    public function findByUsername($email)
+    {
+        return User::where('email', $email)->first();
+    }
     public function findByUsernameOrCreate($userData)
     {
         $user = User::where('email', $userData->email)->first();

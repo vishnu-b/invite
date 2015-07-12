@@ -38,7 +38,9 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">
+                    <a href="/invite/get_contacts">View Contacts</a>
+                </div>
             </div>
         </div>
     </body>
