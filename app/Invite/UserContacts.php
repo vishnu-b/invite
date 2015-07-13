@@ -10,8 +10,19 @@ use Auth;
 
 class UserContacts
 {
+    /**
+     * @var Invite\Repositories\UserRepository
+     */
     private $users;
+
+    /**
+     * @var Invite\Repositories\InviteRepository
+     */
     private $invites;
+
+    /**
+     * @var Artdarek\OAuth\OAuth
+     */
     private $oAuth;
 
     public function __construct(
@@ -24,6 +35,11 @@ class UserContacts
         $this->oAuth = $oAuth;
     }
 
+    /**
+     * Gets all the google contacts of authenticated user
+     * @param  Request $request
+     * @return mixed
+     */
     public function get($request)
     {
         $googleService = $this->oAuth->consumer('Google');
@@ -52,6 +68,11 @@ class UserContacts
         }
     }
 
+    /**
+     * Splits contacts into categories
+     * @param  Array $contacts
+     * @return mixed
+     */
     public function categorize($contacts)
     {
         $auth_user_id = Auth::user()->id;

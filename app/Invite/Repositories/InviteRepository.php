@@ -8,6 +8,11 @@ use Mail;
 
 class InviteRepository
 {
+    /**
+     * Creates new invite
+     * @param  string $email
+     * @return mixed
+     */
     public function store($email)
     {
         $auth_user_id = Auth::user()->id;
@@ -18,18 +23,13 @@ class InviteRepository
         $invite->user_id = $auth_user_id;
         $invite->email = $email;
         $invite->save();
-
-         /*Mail::send('emails.invite', [
-            'email' => $auth_user_email,
-            'name'  => $auth_user_name
-        ], function ($message) use ($invite, $auth_user_email, $auth_user_name) {
-            $message->from($auth_user_email, $auth_user_name);
-            $message->to($invite->email)->subject('Invite to join Invite');
-        });*/
-
-        return "Invite sent.";
     }
 
+    /**
+     * @param  integer $user_id
+     * @param  string $email
+     * @return mixed
+     */
     public function findByUserIDandEmail($user_id, $email)
     {
         return Invite::where('user_id', $user_id)

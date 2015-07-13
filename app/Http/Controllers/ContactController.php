@@ -12,7 +12,14 @@ use App\Jobs\SendInviteEmail;
 
 class ContactController extends Controller
 {
+    /**
+     * @var Invite\UserContacts
+     */
     private $userContacts;
+
+    /**
+     * @var Invite\Repositories\InviteRepository
+     */
     private $invites;
 
     public function __construct(
@@ -22,11 +29,21 @@ class ContactController extends Controller
         $this->userContacts = $userContacts;
         $this->invites = $invites;
     }
+
+    /**
+     * Get contacts using Google contacts API
+     * @param  Request $request
+     * @return mixed
+     */
     public function getContacts(Request $request)
     {
         return $this->userContacts->get($request);
     }
 
+    /**
+     * Display the contacst
+     * @return mixed
+     */
     public function viewContacts()
     {
         $contacts = \Session::get('contacts');
@@ -34,6 +51,11 @@ class ContactController extends Controller
         return view('contacts')->with('contacts', $contacts);
     }
 
+    /**
+     * Invites a contact to join Invite
+     * @param  string $email
+     * @return mixed
+     */
     public function invite($email)
     {
         $this->invites->store($email);

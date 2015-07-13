@@ -7,21 +7,20 @@ use Illuminate\Contracts\Auth\Guard;
 
 class AuthenticateUser
 {
-
     /**
-     * @var UserRepository
+     * @var Invite\Repositories\UserRepository
      */
     private $users;
+
     /**
-     * @var Socialite
+     * @var Laravel\Socialite\Contracts\Factory
      */
     private $socialite;
+
     /**
-     * @var Guard
+     * @var Illuminate\Contracts\Auth\Guard
      */
     private $guard;
-
-    private $token;
 
     public function __construct(UserRepository $users, Socialite $socialite, Guard $guard)
     {
@@ -34,7 +33,7 @@ class AuthenticateUser
 
     /**
      * @param $hasCode
-     * @param AuthenticateUserListener $listener
+     * @param $listener
      * @return mixed
      */
     public function execute($hasCode, $listener)
@@ -49,6 +48,10 @@ class AuthenticateUser
 
     }
 
+    /**
+     * Logs out user
+     * @return mixed
+     */
     public function logout()
     {
 
@@ -59,6 +62,10 @@ class AuthenticateUser
 
     }
 
+    /**
+     * Authorizes user using Socialite
+     * @return mixed
+     */
     private function getAuthorizationFirst()
     {
 
@@ -66,6 +73,10 @@ class AuthenticateUser
 
     }
 
+    /**
+     * Get google user details
+     * @return mixed
+     */
     private function getGoogleUser()
     {
 
