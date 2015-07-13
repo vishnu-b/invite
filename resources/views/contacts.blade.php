@@ -69,7 +69,7 @@
 	                        	@if (isset($contacts['member']))
 	                        		<table class="table table-striped">
 										<tbody>
-											@foreach ($contacts['invited'] as $contact)
+											@foreach ($contacts['member'] as $contact)
 												<tr>
 													<td class="col-md-4">
 														{{ $contact['title'] }}
